@@ -11,7 +11,7 @@ def pdf2text(pdf_dirpath,output_text_file_pat):
     for paper in papers:
         full_text += paper.page_content
 
-    full_text = " ".join(line for line in full_text.splitlines() if line)
+    # full_text = " ".join(line for line in full_text.splitlines() if line)
     # Save the full text to a text file
     try:
         with open(output_text_file_pat, "w", encoding="utf-8") as file:
@@ -24,8 +24,8 @@ def pdf2text(pdf_dirpath,output_text_file_pat):
 
 if __name__=='__main__':
 
-    pdf_dirpath = "data/pdfs"
-    output_text_file_path = "data/texts/prospectus.txt"
+    pdf_dirpath = "app/data/pdfs"
+    output_text_file_path = "app/data/texts/prospectus.txt"
     
     text=pdf2text(pdf_dirpath,output_text_file_path)
     print('PDF text: ',text)

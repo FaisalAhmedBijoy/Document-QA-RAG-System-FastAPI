@@ -36,7 +36,7 @@ def load_and_preprocess_pdf(pdf_dirpath: str, cache_path: str):
 
             logger.info(f"Extracting text from PDF: {pdf_dirpath}")
             # Extract text using bangla_pdf_ocr
-            text = pdf2text(pdf_dirpath)
+            text = pdf2text(pdf_dirpath,cache_path)
             if not text or not text.strip():
                 raise ValueError("No text extracted from PDF with bangla_pdf_ocr")
             logger.info(f"Extracted text sample: {text[:500]}")
@@ -58,6 +58,7 @@ def load_and_preprocess_pdf(pdf_dirpath: str, cache_path: str):
             length_function=len,
             separators=["\n\n", "\n", "।", " ", ""],
         )
+        logger.info(f"Splitting text into chunks... {data}")
         chunks = text_splitter.split_documents(data)
         logger.info(f"Created {len(chunks)} chunks")
         for i, chunk in enumerate(chunks):
@@ -69,8 +70,8 @@ def load_and_preprocess_pdf(pdf_dirpath: str, cache_path: str):
 
 if __name__=='__main__':
  
-    pdf_dirpath = "data/pdfs"
-    output_text_file_path = "data/texts/prospectus.txt"
+    pdf_dirpath = "app/data/pdfs"
+    output_text_file_path = "app/data/texts/tax.txt"
     docs=load_and_preprocess_pdf(pdf_dirpath,output_text_file_path)
     logger.info(f"Total documents loaded and preprocessed: {len(docs)}")
     

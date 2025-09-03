@@ -1,13 +1,6 @@
-import io
-import jwt  
-import json
-import torch
-import ffmpeg
-import base64
 
-
-from app.config.configurations import Config
 from fastapi import APIRouter, HTTPException
+from app.config.configurations import Config
 
 config = Config()
 

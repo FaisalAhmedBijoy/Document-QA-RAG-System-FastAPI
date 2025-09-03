@@ -2,7 +2,6 @@ import uvicorn
 import logging
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
 from app.routes.bangla_rag_route import router as rag_router
 
 # Initialize FastAPI app
