@@ -97,9 +97,9 @@ The system fulfills the requirements of the AI Engineer (Level-1) Technical Asse
    If the environment is created successfully with all necessary dependencies, you will be able to run the scripts without issues.
 
 4. **Set Environment Variables**:
-   Open the `.env` file in the root directory and add this: "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" as the Groq API key:
+   Open the `.env` file in the root directory and add the Groq API key:
    ```
-   GROQ_API_KEY="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"
+   GROQ_API_KEY="YOUR_API_KEY"
    ```
 
 5. **Prepare Dataset**:
