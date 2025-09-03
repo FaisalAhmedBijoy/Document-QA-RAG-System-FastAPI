@@ -1,0 +1,1 @@
+python -m app.processing.vector_store
