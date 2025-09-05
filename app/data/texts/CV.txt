@@ -1,0 +1,109 @@
+Faisal Ahmed
+AI Researcher And Developer
+Phone : +8801607389244
+Email : faisal.cse16.kuet@gmail.com
+Github: https://github.com/faisalahmedbijoy
+Linkedin: https://www.linkedin.com/in/faisal-ahmed-2a71581b1
+Sites: https://sites.google.com/view/faisalahmedbijoy
+Youtube: https://www.youtube.com/@learncomputersciencewithfaisal
+Research Interests
+Language and Speech Processing: Information extraction, Text to speech, speech to text, Conver-
+sational AI, speech-to-speech Models
+Generative AI : Large Language Models (LLMs), Retrieval Augmented Generation (RAG), Agentic
+AI
+Computer Vision: Smarttrafficmonitoringsystems, Vehicledetection, OCR,BiometricRecognition,
+Biomedical signal processing (ECG, EEG, PPG)
+Education
+Khulna University of Engineering & Technology, Khulna February, 2017 - April, 2022
+Department of Computer Science and Engineering B.Sc.(Eng.), CGPA: 3.41/4.00
+Thesis: An Study of Building Infrastructure Recognition Using Deep Learning Methods [GitHub]
+Advisor: Prof. Dr. Sk. Md. Masudul Ahsan
+Research Papers
+F. Ahmed, M. Mahmudul Islam and S. M. Masudul Ahsan, ”Building Infrastructure Classification
+with Hybrid Convolutional Neural Network Architecture,” 2021 5th International Conference on Elec-
+trical Information and Communication Technology (EICT), Khulna, Bangladesh, 2021, pp. 1-6, doi:
+10.1109/EICT54103.2021.9733635. [Link]
+Work Experience
+Business Automation Limited, Dhaka, Bangladesh November, 2024 - Present
+Machine Learning Engineer
+• Developed an automatic speech recognition system for the English language.
+• Developedatransformer-basedAImodelfornext-wordpredictionforauto-suggestioninaproduct.
+• Developed cluster-based remark suggestions in a product
+• Developed a time series forecasting model for a product registration count.
+• Data analysis on project cost estimation in the company data and perform EDA.
+• Developed a website backend service using FastAPI and PostgreSQL that includes SMS and email
+sending modules, payment gateway integration, and custom PDF generation.
+Next Solution Lab, Dhaka, Bangladesh February, 2024 - October, 2024
+AI Engineer
+• Developed deep learning-based product, Virtual try-on. This application allows digitally try on
+clothes and accessories without the need to spend time traveling to and from stores. [Product
+Link]
+• Developed deep learning-based OCR solution according to the business requirements
+• Researchanddeveloptransformer-basedNon-EnglishLanguagemodelfortextclassification, ques-
+tion answering, text summarizing, etc.
+AI Engineer (Associate) April, 2022 - January, 2024
+• Developed industrial analog and digital meter recognition solutions using object detection, text
+recognition. [Product Link]
+• Developed name entity recognition (NER) solution for non-English documents for business re-
+quirements
+• Conduct different R&D for Computer Vision and NLP-based paper implementation and product
+feature improvements. [QA on contract agreements]
+Skills
+Languages Python, Java, C/C++, JavaScript, LaTex
+Database MySQL, PostgreSQL, MongoDB
+ML/DL Framework Tensorflow, Keras, Pytorch, SpaCy, Transformer, Scikit-learn, LangChain
+ML/DL Tools Ollama, EasyOCR, OpenCV, NLTK, Scipy, Pandas, Plotly, Gradio
+Web development FastAPI, Flask, Django, React JS, PHP
+Projects
+Bangla Sentence Punctuation Restoration [GitHub]
+A transformer-based Bangla model was used to build the sentence punctuation model. Llama 3.2 was
+also used to infer with non-punctuation sentence correction. FastAPI was used to prepare the API for
+deployment with Docker.
+Tech Stack: BanglaBERT, LLM, Llama 3.2, FastAPI
+Chat Bot using LLM with Gradio [GitHub]
+The chatbot is built with Flask for the backend and uses a pre-trained model from Hugging Face for
+generating responses.
+Tech Stack: LLM, Gen AI, Flask, Hugging Face
+Chattogram language to standard bangla language conversion [GitHub]
+Developed a transformer-based Seq2Seq model to convert local Chattogram language to standard
+Bangla. The data was processed by the sentencepice tokenizer.
+Tech Stack: Python, PyTorch, Transformers, Seq2Seq
+Automatic Wrong Side Vehicle Detection System [GitHub]
+Developed a YOLO v10-based wrong-side vehicle movement detection. The wrong side vehicle was
+detected using a custom-trained YOLO v10 model and the license plate number was extracted using
+EasyOCR.
+Tech Stack: Python, PyTorch, YOLOv10, EasyOCR
+Named Entity Recognition using SpaCy transformers [GitHub]
+Developedatransformer-basedNERmodeltoextracttheentityofadocument. Themodelwastrained
+on the resume dataset.
+Tech Stack: Python, PyTorch, Transformers, RoBERTa
+Image Cryptography with Autoencoders [GitHub]
+Imageencryptionanddecryptionusingachaoticmapsequenceandanautoencoder. Itincludescodefor
+generating chaotic map sequences, shuffling and deshuffling images, preparing datasets, and computing
+performance metrics .
+Tech Stack: Python, TensorFlow, OpenCV, CNN, Security
+Bangla Roberta Question and Answer [GitHub]
+Bangla Question Answering model architecture is the BERT-based Roberta Model, which is trained on
+Bangla QA data. For training this model, the Bangla QA data is converted into the SQuAD v2 format.
+Tech Stack: Python, PyTorch, Transformer
+Predicting Telco Customer Chrun using Machine Learning [GitHub]
+Customer churn, which refers to customers ceasing their relationship with a company, is a significant
+metric that companies track to understand their service performance.
+Tech Stack: Python, EDA, Scikit-learn
+Extra curriculum activities
+Published Computer Science related tutorials in YouTube [Link] [26K+ views and 370+ subscribers]
+Published Natural Language Processing with Python course on YouTube [Video Link] [GitHub]
+General Secretary, Software Research & Development Community of KUET Sep, 2020 - Apr, 2022
+References
+Prof. Dr. Sk. Md. Masudul Ahsan
+Professor, Department of Computer Science and Engineering
+Khulna University of Engineering & Technology, Khulna
+Email: smahsan@cse.kuet.ac.bd
+Phone: +8801763445569
+https://kuet.ac.bd/cse/smmasudul
+Prof. Dr. M.M.A. Hashem
+Professor, Department of Computer Science and Engineering
+Khulna University of Engineering & Technology, Khulna
+Email: hashem@cse.kuet.ac.bd
+Phone: +8801714-003949
+https://kuet.ac.bd/cse/hashem

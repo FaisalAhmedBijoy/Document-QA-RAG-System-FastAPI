@@ -1,21 +1,12 @@
 import os
-import logging
-from app.processing.pdf_to_text import pdf2text
-import os
 import re
 import logging
 import numpy as np
-from dotenv import load_dotenv
-from langchain_groq import ChatGroq
-from bangla_pdf_ocr import process_pdf
-from langchain.chains import RetrievalQA
-from langchain_community.vectorstores import FAISS
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.prompts import PromptTemplate
-from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_core.documents import Document
+from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 from app.config.configuration import Config
+from app.processing.pdf_to_text import pdf2text_pdfplumber
 
 config=Config()
 
@@ -23,7 +14,8 @@ config=Config()
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
 
-def load_and_preprocess_pdf(pdf_dirpath: str, cache_path: str):
+# Load and preprocess PDF with pdf2text, with caching
+def generate_text_chunks_from_pdf(pdf_path: str, cache_path: str):
     try:
         # Check if text file exists
         if os.path.exists(cache_path):
@@ -31,14 +23,14 @@ def load_and_preprocess_pdf(pdf_dirpath: str, cache_path: str):
             with open(cache_path, 'r', encoding='utf-8') as f:
                 text = f.read()
         else:
-            if not os.path.exists(pdf_dirpath):
-                raise FileNotFoundError(f"PDF not found: {pdf_dirpath}")
+            if not os.path.exists(pdf_path):
+                raise FileNotFoundError(f"PDF not found: {pdf_path}")
 
-            logger.info(f"Extracting text from PDF: {pdf_dirpath}")
-            # Extract text using bangla_pdf_ocr
-            text = pdf2text(pdf_dirpath,cache_path)
+            logger.info(f"Extracting text from PDF: {pdf_path}")
+            # Extract text using pdf2text
+            text = pdf2text_pdfplumber(pdf_path,cache_path)
             if not text or not text.strip():
-                raise ValueError("No text extracted from PDF with bangla_pdf_ocr")
+                raise ValueError("No text extracted from PDF with pdf2text")
             logger.info(f"Extracted text sample: {text[:500]}")
             # Save extracted text to txt file
             with open(cache_path, 'w', encoding='utf-8') as f:
@@ -49,7 +41,7 @@ def load_and_preprocess_pdf(pdf_dirpath: str, cache_path: str):
         cleaned_text = re.sub(r'\s+', ' ', text).strip()
         cleaned_text = cleaned_text.encode('utf-8', errors='replace').decode('utf-8')
         # Create a single Document object
-        data = [Document(page_content=cleaned_text, metadata={"source": pdf_dirpath})]
+        data = [Document(page_content=cleaned_text, metadata={"source": pdf_path})]
 
         # Split into chunks
         text_splitter = RecursiveCharacterTextSplitter(
@@ -58,7 +50,6 @@ def load_and_preprocess_pdf(pdf_dirpath: str, cache_path: str):
             length_function=len,
             separators=["\n\n", "\n", "।", " ", ""],
         )
-        logger.info(f"Splitting text into chunks... {data}")
         chunks = text_splitter.split_documents(data)
         logger.info(f"Created {len(chunks)} chunks")
         for i, chunk in enumerate(chunks):
@@ -70,8 +61,8 @@ def load_and_preprocess_pdf(pdf_dirpath: str, cache_path: str):
 
 if __name__=='__main__':
  
-    pdf_dirpath = "app/data/pdfs"
-    output_text_file_path = "app/data/texts/tax.txt"
-    docs=load_and_preprocess_pdf(pdf_dirpath,output_text_file_path)
-    logger.info(f"Total documents loaded and preprocessed: {len(docs)}")
+    pdf_path = "app/data/pdfs/CV.pdf"
+    output_text_file_path = "app/data/texts/CV.txt"
+    chunks=generate_text_chunks_from_pdf(pdf_path,output_text_file_path)
+    logger.info(f"Total documents loaded and preprocessed: {len(chunks)}")
     

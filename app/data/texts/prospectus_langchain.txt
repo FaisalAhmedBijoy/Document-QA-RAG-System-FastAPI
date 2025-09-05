@@ -1,0 +1,108 @@
+Next Solution Lab, September 2023 - Present, Dhaka, Bangladesh
+Developed an AI-powered solution for automated data extraction from
+invoices, identifying specific entities and accurately determining their
+coordinates to draw bounding boxes.
+Designed and implemented a document similarity detection system,
+enabling efficient retrieval of similar documents from an Amazon S3
+bucket. And wrote AWS Lambda functions to manage operations such
+as search, update, save, and delete from the DynamoDB table and S3
+bucket.
+Developed a human tracking and counting system for retail
+environments, enabling accurate monitoring of individuals entering and
+exiting the shop while detecting their age and gender.
+Designed and deployed robust machine learning models using
+TensorFlow.
+BAHAUDDIN
+TAHA
+AI  ENGINEER
+Skills
+Experience
+Educations
+Personal Projects
+taha15@cse.pstu.ac.bd
+01859 071478
+1. Pneumonia Detection Web App with Deployment on HF Spaces (GitHub)
+Utilized transfer learning model VGG19 to classify chest X-ray images for     
+pneumonia detection. And then developed a user-friendly web application    
+using Gradio for easy accessibility and deployment.
+Passionate and dynamic AI Engineer with 1.6 years of experience in machine learning and deep learning
+domains. Proven ability to develop and deploy machine learning models using best practices. Seeking to
+leverage my expertise and enthusiasm for solving complex problems through data science and machine learning
+in a challenging role.
+Patuakhali Science and Technology University, Patuakhali, Barisal
+January 2018 - September 2023
+CGPA: 3.23
+Programming Languages:
+Python, C, C++
+Libraries: NumPy, Pandas,
+Matplotlib, Scikit-Learn,
+Seaborn, Plotly, OpenCV
+Data Visualization Tools:
+Tableau
+Domain Expertise: Machine
+Learning, Deep Learning, Image
+Processing, Natural Language
+Processing, Computer Vision,
+Data Cleaning, Data Analysis,
+and Data Visualization
+ASSOCIATE AI ENGINEER
+B. SC. IN COMPUTER SCIENCE AND ENGINEERING
+LinkedIn GitHub Google Scholar Portfolio Kaggle
+Frameworks:
+TensorFlow, Keras,
+Flask, Django 
+Databases: SQL,
+MongoDB
+Cloud Computing: AWS
+Lambda, S3,
+DynamoDB
+1. F. R. Liza, M. Samsuzzaman, R. Azim, M. Z. Mahmud, C. Bepery, M. A.  
+Masud, and Bahauddin Taha, “An ensemble approach of supervised learning
+algorithms and artificial neural network for early prediction of diabetes,” in   
+2021 3rd International Conference on Sustainable Technologies for Industry 4.0
+(STI). IEEE, 2021, pp. 1–6 
+2. Bahauddin Taha and F. R. Liza, “Automatic identification of malaria-infected
+cells using deep convolutional neural network,” in 2021 24th International  
+Conference on Computer and Information Technology (ICCIT). IEEE, 2021, pp.
+1–5. 
+3. Bahauddin Taha, F. R. Liza, M. Moniruzzaman, and M. Samsuzzaman,
+“Comparative analysis of fine-tuned mobilenet versions to detect brain tumors   
+from mri images,” in 2022 4th International Conference on Sustainable  
+Technologies for Industry 4.0 (STI). IEEE, 2022, pp. 1–6. 
+4. Bahauddin Taha, F. R. Liza, M. A. Masud, C. Bepery, M. T. Islam, and M.
+Samsuzzaman, “Brainvisionnet: A deep learning-based approach to evaluate the
+potential of microwave imaging for classification of brain tumors,” in 2023
+International Conference on Next-Generation Computing, IoT and Machine
+Learning (NCIM). IEEE, 2023, pp. 1–6. 
+1. Python for Data Science and Machine Learning Bootcamp 
+2. Applied Machine Learning in Python by University of Michigan
+3. Mathematics for Machine Learning: Linear Algebra by Imperial College
+London 
+Publications
+Certifications
+2. LLM based Text Summarizer Web App (GitHub)
+Developed a web application that uses the LaMini-Flan-T5-248M Transformer
+model for text summarization. The app condenses large pieces of text into
+concise summaries, improving information processing. 
+3. Search and Query Across Multiple PDFs using LLM(GitHub)
+Developed an AI-powered web application that allows users to upload
+multiple PDFs and query them using natural language. Utilized Google’s
+Gemini model and LangChain for conversational AI, and PyPDF2 for text
+extraction. Integrated FAISS for fast vector-based search.
+4. RAG-Based Physician Directory Search Web App (GitHub)
+Developed a web application leveraging the Gemini-1.5-Pro model and RAG
+architecture for querying a physician directory. The app retrieves and generates
+precise answers based on a provided PDF, ensuring context-aware responses
+and enhancing data accessibility.
+5. Face Mask Detection Based Door Lock System (GitHub) 
+Implemented a CNN model to detect mask-wearing individuals and control
+door access based on detection results.
+Community
+Contributions and
+Achievements
+1. Authored several blogs on Python, data science, and machine learning,    
+with one blog securing a top 5 position in a blogathon.
+2. Contributed multiple tutorial notebooks on Kaggle, achieving the status of
+Notebook Expert.
+3. Placed in Top 8% at Analytics Vidya's Dataverse Hackathon.
+4. Solved 300+ problems on competitive coding platforms.

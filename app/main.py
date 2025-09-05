@@ -2,10 +2,12 @@ import uvicorn
 import logging
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.routes.bangla_rag_route import router as rag_router
+from app.routes.rag_route import router as rag_router
 
 # Initialize FastAPI app
-app = FastAPI()
+app = FastAPI(title="RAG API", 
+              description="API for querying Bangla and English using a RAG system", 
+              version="1.0.0")
 
 # Enable CORS
 app.add_middleware(
@@ -21,7 +23,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Include the router
-app.include_router(rag_router, prefix="/rag/en")
+app.include_router(rag_router, prefix="/rag")
 
 logger.info("Routers included successfully")
 
@@ -33,7 +35,7 @@ async def get_index():
 
 # Entry point for running the application
 def run():
-    uvicorn.run("app.main:app", host="0.0.0.0", port=6038, reload=True, log_level="info")
+    uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True, log_level="info")
 
 
 if __name__ == "__main__":
