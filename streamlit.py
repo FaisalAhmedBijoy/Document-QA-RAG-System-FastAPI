@@ -1,4 +1,4 @@
-import streamlit_app as st
+import streamlit as st
 
 from app.config.configuration import Config
 from app.core.logger import configure_logging
@@ -53,7 +53,7 @@ def main():
 
         with st.spinner("Processing your query..."):
             try:
-                # ✅ Correct order & using the imported function
+                #  Correct order & using the imported function
                 answer_text = rag_run_inference(
                     rag_chain=st.session_state.rag_chain,
                     query=query

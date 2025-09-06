@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>📚 Document Q&A</title>
+  <style>
+    :root { --bg:#0f172a; --card:#111827; --muted:#9ca3af; --text:#e5e7eb; --accent:#22c55e; --danger:#ef4444; }
+    *{box-sizing:border-box} body{margin:0;font-family:ui-sans-serif,system-ui,Segoe UI,Roboto,Helvetica,Arial;
+      background:linear-gradient(120deg,#0b1220,#0f172a 45%,#0b1220); color:var(--text)}
+    .wrap{max-width:980px;margin:40px auto;padding:0 16px}
+    .card{background:rgba(17,24,39,.8); border:1px solid rgba(255,255,255,.06); border-radius:16px; padding:20px; box-shadow:0 6px 18px rgba(0,0,0,.35)}
+    h1{margin:0 0 8px; font-size:28px}
+    p.subtitle{margin:0 0 20px; color:var(--muted)}
+    label{display:block; font-weight:600; margin:8px 0}
+    textarea{width:100%; min-height:90px; resize:vertical; padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:#0b1220; color:var(--text)}
+    .row{display:flex; gap:16px; flex-wrap:wrap}
+    .col{flex:1 1 320px}
+    button{appearance:none; border:0; border-radius:12px; padding:12px 16px; font-weight:700; cursor:pointer; background:var(--accent); color:#07110a}
+    button[disabled]{opacity:.6; cursor:not-allowed}
+    .muted{color:var(--muted); font-size:.95rem}
+    .error{color:var(--danger); font-weight:600}
+    .result{white-space:pre-wrap; background:#0b1220; border:1px solid rgba(255,255,255,.08); padding:12px; border-radius:12px}
+    .history{max-height:280px; overflow:auto}
+    .history-item{border:1px solid rgba(255,255,255,.06); background:#0b1220; border-radius:12px; padding:12px; margin-bottom:10px}
+    .badge{display:inline-block; font-size:.75rem; padding:2px 8px; border-radius:999px; background:rgba(255,255,255,.08); color:var(--muted); margin-left:6px}
+    .spinner{display:inline-block; width:16px; height:16px; border:2px solid rgba(255,255,255,.25); border-top-color:#fff; border-radius:50%; animation:spin 1s linear infinite; vertical-align:-2px; margin-right:8px}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    footer{margin-top:22px; color:var(--muted); font-size:.9rem}
+    a{color:#93c5fd}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>📚 Document Q&A using RAG LLM</h1>
+      <p class="subtitle">বাংলায় প্রশ্ন করুন—সিস্টেম ডকুমেন্ট কনটেক্সট থেকে উত্তর দেবে।<br> Ask in Bengali or English; the system answers from your document context.</p>
+
+      <div class="row">
+        <div class="col">
+          <label for="query">আপনার প্রশ্ন লিখুন (Enter your question)</label>
+          <textarea id="query" placeholder="উদাহরণ: What is the candidate name?"></textarea>
+          <div style="margin-top:12px; display:flex; gap:10px; align-items:center;">
+            <button id="submitBtn">Submit Query</button>
+            <span id="status" class="muted"></span>
+          </div>
+        </div>
+        <div class="col">
+          <label>Result</label>
+          <div id="result" class="result muted">No result yet.</div>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top:20px;">
+        <div class="col">
+          <label>History</label>
+          <div id="history" class="history muted">No queries yet.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // If your FastAPI runs under a different origin, change this:
+    const API_BASE = "http://127.0.0.1:8000"; 
+    const ENDPOINT = "/rag/query";
+
+    const $q = document.getElementById("query");
+    const $btn = document.getElementById("submitBtn");
+    const $status = document.getElementById("status");
+    const $result = document.getElementById("result");
+    const $history = document.getElementById("history");
+
+    const history = [];
+
+    function setLoading(isLoading) {
+      if (isLoading) {
+        $btn.setAttribute("disabled", "true");
+        $status.innerHTML = '<span class="spinner"></span>Processing your query...';
+      } else {
+        $btn.removeAttribute("disabled");
+        $status.textContent = "";
+      }
+    }
+
+    function renderHistory() {
+      if (!history.length) {
+        $history.classList.add("muted");
+        $history.textContent = "No queries yet.";
+        return;
+      }
+      $history.classList.remove("muted");
+      $history.innerHTML = history.slice().reverse().map(item => `
+        <div class="history-item">
+          <div><strong>Query:</strong> ${escapeHtml(item.query)}</div>
+          <div style="margin-top:6px;"><strong>Answer:</strong> ${escapeHtml(item.answer)}</div>
+        </div>
+      `).join("");
+    }
+
+    function escapeHtml(s) {
+      return String(s)
+        .replace(/&/g, "&amp;").replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;").replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    async function sendQuery() {
+      const query = $q.value.trim();
+      if (!query) {
+        $status.innerHTML = '<span class="error">Please enter a query.</span>';
+        return;
+      }
+
+      setLoading(true);
+      $result.classList.remove("muted");
+      $result.textContent = "";
+
+      try {
+        const resp = await fetch(API_BASE + ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ query })
+        });
+
+        if (!resp.ok) {
+          const msg = `HTTP ${resp.status} – ${resp.statusText}`;
+          $result.innerHTML = `<span class="error">${msg}</span>`;
+          setLoading(false);
+          return;
+        }
+
+        const data = await resp.json();
+        const answer = data?.answer ?? data?.result ?? JSON.stringify(data);
+
+        $result.textContent = answer;
+        history.push({ query, answer });
+        renderHistory();
+      } catch (e) {
+        $result.innerHTML = `<span class="error">Request failed: ${escapeHtml(e.message || e)}</span>`;
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    $btn.addEventListener("click", sendQuery);
+    $q.addEventListener("keydown", (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
+        sendQuery();
+      }
+    });
+
+    renderHistory();
+  </script>
+</body>
+</html>
