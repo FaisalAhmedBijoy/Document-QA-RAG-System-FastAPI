@@ -1,16 +1,8 @@
-import os
-from dotenv import load_dotenv
-from langchain_community.vectorstores import FAISS
-from langchain.prompts import PromptTemplate
-from langchain.chains import RetrievalQA
-from langchain_huggingface import HuggingFaceEmbeddings
-from langchain_groq import ChatGroq
-from tenacity import retry, stop_after_attempt, wait_fixed
-
-from app.config.configuration import Config
+from app.core.logger import configure_logging
 from app.processing.generate_vector_db import load_vector_store
 from app.processing.generate_rag_chain import create_rag_chain
 
+logger = configure_logging("SINGLE_QUERY_INFERENCE")
 
 # Run inference
 def run_inference(rag_chain, query: str):

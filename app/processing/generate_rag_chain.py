@@ -1,19 +1,14 @@
-import os
-import re
-import logging
 from langchain_groq import ChatGroq
 from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
 from tenacity import retry, stop_after_attempt, wait_fixed
+
 from app.config.configuration import Config
-from app.processing.generate_text_chunks import generate_text_chunks_from_pdf
-from app.processing.generate_vector_db import create_vector_store, load_vector_store
-# Configure logging
+from app.core.logger import configure_logging
+from app.processing.generate_vector_db import load_vector_store
 
 config=Config()
-
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
-logger = logging.getLogger(__name__)
+logger = configure_logging("GENERATE_RAG_CHAIN")
 
 # Initialize Groq LLM with rate limit handling
 @retry(stop=stop_after_attempt(5), wait=wait_fixed(3))

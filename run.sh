@@ -4,4 +4,5 @@
 # python -m app.processing.generate_rag_chain
 # python -m app.processing.generate_text_chunks
 # python -m app.processing.evaluate_rag
-python -m app.processing.single_query_inference
+# python -m app.processing.single_query_inference
+python -m app.processing.generate_embeddings

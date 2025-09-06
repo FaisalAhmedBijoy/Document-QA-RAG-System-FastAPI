@@ -1,5 +1,6 @@
 .env
 app/saved_models
+logs
 __pycache__
 *__pycache__
 *.log

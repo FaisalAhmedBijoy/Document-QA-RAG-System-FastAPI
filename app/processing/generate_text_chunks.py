@@ -1,18 +1,14 @@
 import os
 import re
-import logging
-import numpy as np
 from langchain_core.documents import Document
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 from app.config.configuration import Config
+from app.core.logger import configure_logging
 from app.processing.pdf_to_text import pdf2text_pdfplumber
 
 config=Config()
-
-# Configure logging
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
-logger = logging.getLogger(__name__)
+logger = configure_logging("GENERATE_TEXT_CHUNKS")
 
 # Load and preprocess PDF with pdf2text, with caching
 def generate_text_chunks_from_pdf(pdf_path: str, cache_path: str):
