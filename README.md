@@ -1,9 +1,10 @@
 # Document Q&A RAG System with FastAPI
 
-A powerful Document Question-Answering system built using Retrieval-Augmented Generation (RAG) architecture, FastAPI backend, and Streamlit frontend. This system supports both Bengali and English languages for document processing and querying.
+A powerful Document Question-Answering system built using `Retrieval-Augmented Generation (RAG)` architecture, `FAISS Vector Search`, and a `FastAPI` backend. It supports both Bengali and English for querying documents and provides context-aware answers. The system is also integrated with `Streamlit` for an interactive, user-friendly interface.
 
 #### Web Application
 ![Webpage Home](/docs/webpage_home.png)
+![Webpage Home](/docs/webpage_3.png)
 
 #### Streamlit App
 ![Streamlit UI](/docs/streamlit_output_1.png)
@@ -189,7 +190,7 @@ The system includes evaluation tools to measure:
 ## Chat History 
 - Bangla input in webpage
 
-   ![Bangla Questions](docs/webpage_bangla_question.png)
+   ![Bangla Questions](docs/webpage_bangla_question.png) 
 
 - In streamlit
 
