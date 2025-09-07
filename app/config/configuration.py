@@ -9,7 +9,8 @@ class Config:
         self.HUGGINGFACE_EMBEDDING_MODEL = self.get_required_env("HUGGINGFACE_EMBEDDING_MODEL")
         self.GROQ_API_KEY = self.get_required_env("GROQ_API_KEY")
         self.LLM_MODEL = self.get_required_env("LLM_MODEL")
-        self.VECTOR_STORE_PATH = self.get_required_env("VECTOR_STORE_PATH")    
+        self.VECTOR_STORE_PATH = self.get_required_env("VECTOR_STORE_PATH")
+        self.VECTOR_STORE_DIR = self.get_required_env("VECTOR_STORE_DIR")    
         self.CHUNK_OVERLAP = int(self.get_required_env("CHUNK_OVERLAP"))
         self.CHUNK_SIZE = int(self.get_required_env("CHUNK_SIZE"))
         

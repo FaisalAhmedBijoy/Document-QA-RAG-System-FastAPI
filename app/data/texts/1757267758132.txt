@@ -1,0 +1,86 @@
+H.M.Mehedi Hasan (Badhon)
+Associated Robotics and AI Engineer
+Dhaka, Bangladesh
+Phone: +8801739989022
+Email: h.m.badhoneee@gmail.com
+GitHub: https://github.com/hm-badhon
+LinkedIn: https://www.linkedin.com/in/h-m-mehedi-hasan-badhon
+CAREER OBJECTIVE
+PassionateRoboticandAIengineerwithexpertiseinRobotics,NLP,ML,andcomputervision. Seeking
+a challenging role to design and implement innovative AI solutions that enhance intelligent systems’
+capabilities and autonomy.
+WORK INTERESTS
+Natural Language Processing, Machine Learning, Computer Vision and Robotics.
+WORK EXPERIENCE
+Next Solution Lab, Dhaka, Bangladesh September, 2023 - Present
+Associated Robotics and AI Engineer
+• Leading the development of Tele-Presence Robot with robotic arm for specific task solutions,
+enhancing remote communication and control systems.
+• Design and implement state-of-the-art AI models with GUI according to business requirements.
+• Develop machine learning-based OCR solutions according to business requirements.
+• Research and develop transformers-based non-English language models for fine-tuning text classi-
+fication, question answering, text summarizing based on LLM etc.
+• Collaborate with cross-functional teams to integrate AI technologies into existing products.
+Trainee Robotics and AI Engineer August, 2022 - September, 2023
+• Developed industrial automation solutions using object detection, text recognition, and GUI.
+• Conducted R&D for computer vision and NLP-based paper implementation and product feature
+improvements.
+• Designed and developed algorithms for data preprocessing, model training, testing, and post-
+processing.
+• Assisted in the integration of AI models into robotics platforms.
+• Participated in hackathons and competitions to showcase innovative AI solutions.
+EDUCATION
+Begum Rokeya University, Rangpur February, 2017 - July, 2022
+Department of Electrical and Electronics Engineering B.Sc.(Eng.), CGPA: 3.38/4.00
+Relevant Coursework: Artificial Intelligence, Machine Learning, Robotics, Signal Processing
+SKILLS
+Programming Languages Python, C, JavaScript
+Frameworks TensorFlow, Keras, PyTorch, SpaCy, Transformers, Scikit-learn
+Tools OpenCV, NLTK, Gensim, NumPy, SciPy, Pandas, Matplotlib, Seaborn
+Web Development Django
+Embedded Systems Arduino, Raspberry Pi, Jetson Nano
+Operating Systems Ubuntu, Windows
+Projects
+Japanese OCR Data Analysis & Annotation
+Conducted data analysis, annotation, and testing for Japanese OCR systems.
+Worked on improving recognition accuracy through detailed character-level labeling and quality assur-
+ance.
+Robot-User Telecommunication System
+DevelopedacommunicationsystemusingMQTT,Django,andWebSocketforreal-timeinteractionbetween
+robots and users.
+Ensured low-latency and reliable data exchange in robotics applications.
+Meter Detection and Recognition
+Built a system for automatic meter reading using image processing and deep learning.
+Focused on detecting analog/digital meter panels and recognizing values with high accuracy.
+Color Matching System for Garment Fabrics
+Designed a color detection and matching system to ensure consistency in garment manufacturing.
+Implemented algorithms for fabric color comparison under varying lighting conditions.
+Data Preparation & Size Measurement for Virtual Try-On (Diffusion Model)
+Prepared and processed data for a virtual try-on system using Diffusion Models.
+Extracted human body measurements to improve clothing fit accuracy in virtual environments.
+Traffic Monitoring with YOLOv11 – Wrong-Side Car Detection
+Trained a custom YOLOv11 model to detect vehicles violating lane rules.
+Implemented real-time monitoring and alert system for law enforcement integration.
+ROBOTICS PROJECTS
+Telepresence Robot with Robotic Hands using Jetson Nano and Django with WebRTC
+[GitHub]
+Developed a telepresence robot for real-time remote communication. The robot includes a robotic arm
+controlled remotely for specific tasks and incorporates object detection for classifying and interacting
+with objects.
+Tech Stack: WebRTC, Django, MQTT
+Prosthetic Limb Control using Electromyography (EMG) Sensor
+[GitHub]
+Developed a prosthetic limb control system utilizing EMG sensors to interpret muscle signals and con-
+trol limb movements, providing a natural user experience.
+Tech Stack: EMG Sensors, Signal Processing, Prosthetics
+CERTIFICATIONS AND COURSES
+Natural Language Processing (NLP) and Text Mining Tutorial for Beginners - Simplilearn
+Machine Learning - Kaggle
+Basics of Robotics, Embedded Systems, & IoT - Lead Academy
+LANGUAGES
+Bengali (Native)
+English (Fluent)
+Hindi (Conversational)
+EXTRA-CURRICULAR ACTIVITIES
+• Former President of Public University Welfare Association of Dimla (PUSWAD)
+• Recipient of Best Organizer Award from NO-Not Out

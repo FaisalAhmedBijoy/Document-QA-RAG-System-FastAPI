@@ -1,9 +1,11 @@
 import os
+import time
 from langchain_community.vectorstores import FAISS
 
 from app.config.configuration import Config
 from app.core.logger import configure_logging
 from app.processing.generate_embeddings import get_embeddings
+from app.processing.generate_text_chunks import generate_text_chunks_from_pdf
 
 config=Config()
 logger = configure_logging("GENERATE_VECTOR_DB")
@@ -32,12 +34,15 @@ if __name__=='__main__':
   
     pdf_path = "app/data/pdfs/CV.pdf"
     output_text_file_path = "app/data/texts/CV.txt"
-    saved_vector_store_path = "app/data/vectorstores/faiss_index"
+    # saved_vector_store_path = "app/data/vectorstores/faiss_index"
+    # Generate a unique ID based on current time
+    document_id = str(int(time.time() * 1000))  # Timestamp in milliseconds
+    saved_vector_store_path = f"app/data/vectorstores/faiss_index_{document_id}"
 
-    # chunks=generate_text_chunks_from_pdf(pdf_path,output_text_file_path)
-    # vector_store=create_vector_store(chunks, saved_vector_store_path)
-    # logger.info(f"Total documents loaded and preprocessed: {len(chunks)}")
-    # logger.info(f"Vector store info: {vector_store}")
+    chunks=generate_text_chunks_from_pdf(pdf_path,output_text_file_path)
+    vector_store=create_vector_store(chunks, saved_vector_store_path)
+    logger.info(f"Total documents loaded and preprocessed: {len(chunks)}")
+    logger.info(f"Vector store info: {vector_store}")
 
     # To load the vector store later
     vector_store = load_vector_store(saved_vector_store_path)
