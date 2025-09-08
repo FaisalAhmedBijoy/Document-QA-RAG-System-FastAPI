@@ -76,19 +76,24 @@ GROQ_API_KEY="YOUR_API_KEY"
 ## Usage
 
 1. Start the FastAPI backend:
-```bash
-python -m app.main
-```
+   ```bash
+   python -m app.main
+   ```
 
 2. Launch the Streamlit frontend:
-```bash
-streamlit run streamlit.py
-```
+   ```bash
+   streamlit run streamlit.py
+   ```
 
 3. Access the applications:
 - FastAPI Swagger UI: http://localhost:8000/docs
 - Streamlit Interface: http://localhost:8501
 
+4. Run using Dokcer:
+   ```bash
+   docker compose -f docker-compose.yaml up --build
+   docker compose -f docker-compose.yaml up
+   ```
 ## Processing Pipeline
 
 1. **PDF Processing**
@@ -108,44 +113,44 @@ streamlit run streamlit.py
 3. **Embedding Generation and Vector Store**
    - Generate embeddings for text chunks. Embedding model used `l3cube-pune/bengali-sentence-similarity-sbert` from HuggingFace. 
    - Store vectors in FAISS index
-   ```bash
-   python -m app.processing.generate_embeddings
-   python -m app.processing.generate_vector_db
-   ```
+      ```bash
+      python -m app.processing.generate_embeddings
+      python -m app.processing.generate_vector_db
+      ```
    - Vector stored into `app/data/vectorstores/faiss_index`
 
 4. **RAG Chain**
    - Retrieve relevant context using vector similarity
    - Generate answers using LLM with retrieved context. `Lllama-3.3-70b-versatile` LLM model used from [Groq](https://console.groq.com/docs/model/llama-3.3-70b-versatile). 
-   ```bash
-   python -m app.processing.generate_rag_chain
-   ```
+      ```bash
+      python -m app.processing.generate_rag_chain
+      ```
    - prompt used for this task
-   ```python
-    prompt_template = """
-        You are an assistant that answers questions strictly based on the provided document text.
+      ```python
+      prompt_template = """
+         You are an assistant that answers questions strictly based on the provided document text.
 
-        Rules:
-        - Only use the information from the given Context.
-        - Do not use outside knowledge.
-        - If the answer is not found in the Context, reply exactly: "Information not found in the document."
-        - Provide only the answer, without repeating the question or the context.
+         Rules:
+         - Only use the information from the given Context.
+         - Do not use outside knowledge.
+         - If the answer is not found in the Context, reply exactly: "Information not found in the document."
+         - Provide only the answer, without repeating the question or the context.
 
-        Context: {context}
-        Question: {question}
-        Answer:
-        """
-   ```
+         Context: {context}
+         Question: {question}
+         Answer:
+         """
+      ```
 5. **Single Query Inference**
    - Run a query using LLM model
-   ```bash
-   python -m app.processing.single_query_inference
-   ```
+      ```bash
+      python -m app.processing.single_query_inference
+      ```
    - Perform question answering about the document
-   ```json
-   "query": "What is the email address of the candidate?",
-   "answer": "faisal.cse16.kuet@gmail.com"
-   ```
+      ```json
+      "query": "What is the email address of the candidate?",
+      "answer": "faisal.cse16.kuet@gmail.com"
+      ```
 
 6. **API Endpoints**
 
