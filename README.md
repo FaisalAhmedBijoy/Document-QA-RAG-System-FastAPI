@@ -89,7 +89,7 @@ GROQ_API_KEY="YOUR_API_KEY"
    - FastAPI Swagger UI: http://localhost:8000/docs
    - Streamlit Interface: http://localhost:8501
 
-4. Run using Dokcer:
+4. Run using Docker:
    ```bash
    docker compose -f docker-compose.yaml up --build
    docker compose -f docker-compose.yaml up
