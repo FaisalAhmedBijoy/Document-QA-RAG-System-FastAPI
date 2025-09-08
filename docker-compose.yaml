@@ -1,0 +1,20 @@
+services:
+  document-rag:
+    image: document-rag:v1
+    container_name: document-rag
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - CORS_ORIGINS=['*']
+    volumes:
+      - ./app/data:/app/data
+    restart: always
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
