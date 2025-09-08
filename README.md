@@ -3,8 +3,8 @@
 A powerful Document Question-Answering system built using `Retrieval-Augmented Generation (RAG)` architecture, `FAISS Vector Search`, and a `FastAPI` backend. It supports both Bengali and English for querying documents and provides context-aware answers. The system is also integrated with `Streamlit` for an interactive, user-friendly interface.
 
 #### Web Application
-![Webpage Home](/docs/webpage_home.png)
-![Webpage Home](/docs/webpage_3.png)
+![Webpage Home](/docs/webpage_homepage_main.png)
+![Webpage Home](/docs/webpage_home_page_2.png)
 
 #### Streamlit App
 ![Streamlit UI](/docs/streamlit_output_1.png)
@@ -149,10 +149,14 @@ streamlit run streamlit.py
 
 6. **API Endpoints**
 
-      ![API Endpoints](docs/swagger_%20docs.png)
+      ![API Endpoints](docs/swagger_docs.png)
 
     - `/rag/query`: Process questions and generate answers
         - Method: `POST`
+        - Params
+            ```json
+            "query": "What is the name the candidate?",
+            ```
         - Response
             ```json
             "query": "What is the name the candidate?",
@@ -161,6 +165,11 @@ streamlit run streamlit.py
     
     - `/rag/query-with-reference`: Process questions and generate answers
         - Method: `POST`
+        - Params
+            ```json
+            "query": "What is the job duration in Business Automation Limited?"
+            "expected_answer": "Nov 2024 - Present",
+            ```
         - Response
             ```json
             "query": "What is the job duration in Business Automation Limited?",
@@ -170,9 +179,42 @@ streamlit run streamlit.py
             "context": [
                "[Doc 1]: • Developed cluster-based remark suggestions in a product • Developed a time series forecasting model for a product registration count. • Data analysis on project cost estimation in the company data and perform EDA. • Developed a website backend service using FastAPI and PostgreSQL that includes SMS and email sending modules, payment gateway integration, and custom PDF generation. Next Solution Lab, Dhaka, Bangladesh February, 2024 - October, 2024 AI Engineer • Developed deep learning-based prod",
                "[Doc 2]: Sentence Punctuation Restoration [GitHub] A transformer-based Bangla model was used to build the sentence punctuation model. Llama 3.2 was also used to infer with non-punctuation sentence correction. FastAPI was used to prepare the API for deployment with Docker. Tech Stack: BanglaBERT, LLM, Llama 3.2, FastAPI Chat Bot using LLM with Gradio [GitHub] The chatbot is built with Flask for the backend and uses a pre-trained model from Hugging Face for generating responses. Tech Stack: LLM, Gen AI, Fl",
-               "[Doc 3]: Wrong Side Vehicle Detection System [GitHub] Developed a YOLO v10-based wrong-side vehicle movement detection. The wrong side vehicle was detected using a custom-trained YOLO v10 model and the license plate number was extracted using EasyOCR. Tech Stack: Python, PyTorch, YOLOv10, EasyOCR Named Entity Recognition using SpaCy transformers [GitHub] Developedatransformer-basedNERmodeltoextracttheentityofadocument. Themodelwastrained on the resume dataset. Tech Stack: Python, PyTorch, Transformers, R",
             ]
             ```
+   - `/rag/upload-document-pdf`: Upload PDF for generate new FAISS vector 
+      - Method: POST
+      - Params: `PDF File`
+      - Response: FAISS vector saved `Document ID`. 
+   
+   - `/rag/query-by-document`: Process questions and generate answers based on document id
+        - Method: `POST`
+        - Params
+            ```json
+            "query": "What is the name the candidate?",
+            "document_id": "1757268986878",
+            ```
+        - Response
+            ```json
+            "query": "What is the name the candidate?",
+            "answer": "Faisal Ahmed",
+            ```
+   - `/rag/list-vector-storest`: Show the current vector list
+        - Method: `GET`
+        - Response
+            ```json
+            "vectors": {
+               "vector_stores": [
+                  "faiss_index_1757267758132",
+                  "faiss_index_1757268986878",
+               ],
+               "document_ids": [
+                  "1757267758132",
+                  "1757268986878",
+               ]
+            }
+            ```
+   - `/rag/pdf/{ddocument_id}`: Show the PDF with document id
+        - Method: `GET`
 
 ## Evaluation
 
@@ -186,15 +228,6 @@ The system includes evaluation tools to measure:
 - API documentation available at `http://127.0.0.1:8000/docs` endpoint
 - Sample outputs and UI screenshots in `docs/` directory
 - Detailed logging in `logs/` directory
-
-## Chat History 
-- Bangla input in webpage
-
-   ![Bangla Questions](docs/webpage_bangla_question.png) 
-
-- In streamlit
-
-   ![Bangla Questions](docs/streamlit_output2.png)
 
 ## Acknowledgments
 

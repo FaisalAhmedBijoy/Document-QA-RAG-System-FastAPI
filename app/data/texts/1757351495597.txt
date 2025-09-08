@@ -1,0 +1,70 @@
+Faisal Ahmed
+AI Researcher And Developer
+Phone : +8801607389244
+Email : faisal.cse16.kuet@gmail.com
+Github: https://github.com/faisalahmedbijoy
+Linkedin: https://www.linkedin.com/in/faisal-ahmed-2a71581b1
+Sites: https://sites.google.com/view/faisalahmedbijoy
+Youtube: https://www.youtube.com/@learncomputersciencewithfaisal
+CAREER OBJECTIVE
+HighlymotivatedAIengineerwithastrongbackgroundinmachinelearning, deeplearning, andnatural
+language processing. I am seeking a challenging role where I can leverage my expertise to develop
+cutting-edge AI solutions that drive innovation and generate business value.
+WORK INTERESTS
+Deep Learning, Machine Learning, Natural Language Processing, Computer Vision, Speech Processing
+WORK EXPERIENCE
+Business Automation Limited, Dhaka, Bangladesh November, 2024 - Present
+Machine Learning Engineer
+• Developedatransformer-basedAImodelfornext-wordpredictionforauto-suggestioninaproduct.
+• Developed cluster-based remarks for auto-suggestion in a product
+• Developed a time series forecasting model for a product registration count.
+Next Solution Lab, Dhaka, Bangladesh February, 2024 - October, 2024
+AI Engineer
+• Developed Machine learning-based OCR solution according to the business requirements
+• Research and develop transformer-based Non-English Language model for fine-tuning text classi-
+fication, question answering, text summarizing, etc.
+AI Engineer (Associate) April, 2022 - January, 2024
+• Developed industrial automation solutions using object detection, text recognition, GUI
+• Developed name entity recognition (NER) solution for non-English documents for business re-
+quirements
+• Conduct different R&D for Computer Vision and NLP-based paper implementation and product
+feature improvements.
+EDUCATION
+Khulna University of Engineering & Technology, Khulna February, 2017 - April, 2022
+Department of Computer Science and Engineering B.Sc.(Eng.), CGPA: 3.41/4.00
+Thesis: An Study of Building Infrastructure Recognition Using Deep Learning Methods [GitHub]
+Research paper: F. Ahmed, M. Mahmudul Islam and S. M. Masudul Ahsan, ”Building Infrastruc-
+ture Classification with Hybrid Convolutional Neural Network Architecture,” 2021 5th International
+Conference on Electrical Information and Communication Technology (EICT), Khulna, Bangladesh,
+2021, pp. 1-6, doi: 10.1109/EICT54103.2021.9733635. [Link]
+SKILLS
+Languages Python, Java, C/C++, JavaScript, LaTex
+Database MySQL, Oracle
+ML/DL Framework Tensorflow, Keras, Pytorch, SpaCy, Transformer, Scikit-learn, Generative AI
+ML/DL Tools OpenCV, NLTK, Gensim, Numpy, Scipy, Pandas, Matplotlib, Seaborn
+Web development Django, Flask, React JS, PHP
+PROJECTS
+Chat Bot using LLM with Gradio [GitHub]
+The chatbot is built with Flask for the backend and uses a pre-trained model from Hugging Face for
+generating responses..
+Tech Stack: LLM, Gen AI, Flask, Hugging Face
+Chattogram language to standard bangla language conversion [GitHub]
+Developed a transformer-based Seq2Seq model to convert local Chattogram language to standard
+Bangla. The data was processed by the sentencepice tokenizer.
+Tech Stack: Python, PyTorch, Transformers, Seq2Seq
+Named Entity Recognition using SpaCy transformers [GitHub]
+Developedatransformer-basedNERmodeltoextracttheentityofadocument. Themodelwastrained
+on the resume dataset.
+Tech Stack: Python, PyTorch, Transformers, RoBERTa
+Image Cryptography with Autoencoders [GitHub]
+Imageencryptionanddecryptionusingachaoticmapsequenceandanautoencoder. Itincludescodefor
+generating chaotic map sequences, shuffling and deshuffling images, preparing datasets, and computing
+performance metrics .
+Tech Stack: Python, TensorFlow, OpenCV, CNN, Security
+Bangla Roberta Question and Answer [GitHub]
+Bangla Question Answering model architecture is the BERT-based Roberta Model, which is trained on
+Bangla QA data. For training this model, the Bangla QA data is converted into the SQuAD v2 format.
+Tech Stack: Python, PyTorch, Transformer
+EXTRA CURRICULUM ACTIVITIES
+• Published Computer Science related tutorials in YouTube [Link] [26K+ views and 370+ subscribers]
+•PublishedNatural Language Processing with PythoncourseonYouTube[VideoLink][GitHub]

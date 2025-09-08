@@ -12,7 +12,7 @@ from app.processing.single_query_inference import run_inference
 from app.processing.evaluate_rag import evaluate_rag_with_reference
 from app.processing.generate_embeddings import get_embeddings
 from app.processing.generate_text_chunks import generate_text_chunks_from_pdf
-from app.schemas.rag_schema import QueryOnlySchema, QueryWithReferenceSchema
+from app.schemas.rag_schema import QueryOnlySchema, QueryWithReferenceSchema, QueryWithDocumentIdSchema
 
 
 config=Config()
@@ -100,10 +100,10 @@ async def generate_vector_store_for_pdf(pdf_file: UploadFile,
         raise HTTPException(status_code=500, detail=f"Error processing the PDF: {str(e)}")
     
 
-async def query_rag_by_document(request: QueryOnlySchema, document_id: str):
+async def query_rag_by_document(request: QueryWithDocumentIdSchema):
     try:
         # Load the correct vector store based on document ID
-        saved_vector_store_path = f"app/data/vectorstores/faiss_index_{document_id}"
+        saved_vector_store_path = f"app/data/vectorstores/faiss_index_{request.document_id}"
         
         if not os.path.exists(saved_vector_store_path):
             raise HTTPException(status_code=404, detail="Document ID not found.")
@@ -120,7 +120,7 @@ async def query_rag_by_document(request: QueryOnlySchema, document_id: str):
         return JSONResponse(content=response)
 
     except Exception as e:
-        logger.error(f"Error querying document with ID {document_id}: {str(e)}")
+        logger.error(f"Error querying document with ID {request.document_id}: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error processing the query: {str(e)}")
     
 async def get_all_vectors_list():
@@ -137,7 +137,14 @@ async def get_all_vectors_list():
         # Extract document IDs from folder names
         document_ids = [name.replace("faiss_index_", "") for name in vector_stores]
 
-        return JSONResponse(content={"vector_stores": vector_stores, "document_ids": document_ids})
+        vectors = {
+            "vectors": { 
+                "vector_stores": vector_stores, 
+                 "document_ids": document_ids
+                 }
+            }
+
+        return JSONResponse(content=vectors)
 
     except Exception as e:
         return JSONResponse(content={"error": str(e)}, status_code=500)

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>📚 Document Q&A</title>
+  <title>📚 Document Q&A using RAG LLM</title>
   <style>
     :root { --bg:#0f172a; --card:#111827; --muted:#9ca3af; --text:#e5e7eb; --accent:#22c55e; --danger:#ef4444; }
     *{box-sizing:border-box} body{margin:0;font-family:ui-sans-serif,system-ui,Segoe UI,Roboto,Helvetica,Arial;
@@ -18,6 +18,7 @@
     .col{flex:1 1 320px}
     button{appearance:none; border:0; border-radius:12px; padding:12px 16px; font-weight:700; cursor:pointer; background:var(--accent); color:#07110a}
     button[disabled]{opacity:.6; cursor:not-allowed}
+    button.active{background:#3b82f6}
     .muted{color:var(--muted); font-size:.95rem}
     .error{color:var(--danger); font-weight:600}
     .result{white-space:pre-wrap; background:#0b1220; border:1px solid rgba(255,255,255,.08); padding:12px; border-radius:12px}
@@ -28,26 +29,145 @@
     @keyframes spin{to{transform:rotate(360deg)}}
     footer{margin-top:22px; color:var(--muted); font-size:.9rem}
     a{color:#93c5fd}
+    
+    /* Styling for vector stores list */
+    .vector-store-list {
+      position: fixed;
+      top: 20%;
+      right: 10px;
+      background-color: rgba(17,24,39,.9);
+      padding: 15px;
+      border-radius: 10px;
+      width: 300px;
+      height: 60%;
+      overflow-y: auto;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255,255,255,.06);
+    }
+    .vector-store-item {
+      margin-bottom: 15px;
+      color: #e5e7eb;
+      font-size: 14px;
+      padding: 12px;
+      background: rgba(11,18,32,.6);
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,.06);
+    }
+    .vector-store-item strong {
+      color: var(--accent);
+    }
+    .queryBtn {
+      background: #3b82f6;
+      color: white;
+      font-size: 12px;
+      padding: 6px 10px;
+      margin-top: 8px;
+      border-radius: 6px;
+    }
+    .queryBtn:hover {
+      background: #2563eb;
+    }
+    .viewPdfBtn {
+      background: #f59e0b;
+      color: white;
+      font-size: 12px;
+      padding: 6px 10px;
+      margin-top: 8px;
+      margin-left: 8px;
+      border-radius: 6px;
+    }
+    .viewPdfBtn:hover {
+      background: #d97706;
+    }
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--danger);
+      color: white;
+      border: none;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .vector-stores-header {
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+      color: var(--accent);
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
   <div class="wrap">
     <div class="card">
       <h1>📚 Document Q&A using RAG LLM</h1>
-      <p class="subtitle">বাংলায় প্রশ্ন করুন—সিস্টেম ডকুমেন্ট কনটেক্সট থেকে উত্তর দেবে।<br> Ask in Bengali or English; the system answers from your document context.</p>
+      <p class="subtitle">বাংলায় প্রশ্ন করুন—সিস্টেম ডকুমেন্ট কনটেক্সট থেকে উত্তর দেবে।<br> Ask in Bengali or English; the system answers from your document context.</p>
 
-      <div class="row">
-        <div class="col">
-          <label for="query">আপনার প্রশ্ন লিখুন (Enter your question)</label>
-          <textarea id="query" placeholder="উদাহরণ: What is the candidate name?"></textarea>
-          <div style="margin-top:12px; display:flex; gap:10px; align-items:center;">
-            <button id="submitBtn">Submit Query</button>
-            <span id="status" class="muted"></span>
+      <!-- Navigation -->
+      <div style="margin-bottom: 20px;">
+        <button id="navQueryBtn" class="active">Query by Text</button>
+        <button id="navQueryDocBtn">Query by Document</button>
+      </div>
+
+      <!-- Query Section (By Text) -->
+      <div id="querySection">
+        <div class="row">
+          <div class="col">
+            <label for="query">আপনার প্রশ্ন লিখুন (Enter your question)</label>
+            <textarea id="query" placeholder="উদাহরণ: What is the candidate name?"></textarea>
+            <div style="margin-top:12px; display:flex; gap:10px; align-items:center;">
+              <button id="submitQueryBtn">Submit Query</button>
+              <span id="queryStatus" class="muted"></span>
+            </div>
+          </div>
+          <div class="col">
+            <label>Result</label>
+            <div id="queryResult" class="result muted">No result yet.</div>
           </div>
         </div>
+      </div>
+
+      <!-- Query Section (By Document) -->
+      <div id="queryByDocSection" style="display: none;">
+        <div class="row">
+          <div class="col">
+            <label for="query">Enter your question for document</label>
+            <textarea id="queryByDoc" placeholder="What is the candidate's email?"></textarea>
+            <div style="margin-top:12px; display:flex; gap:10px; align-items:center;">
+              <button id="submitQueryDocBtn">Submit Query</button>
+              <span class="muted" id="selectedDocId">No document selected</span>
+            </div>
+          </div>
+          <div class="col">
+            <label>Result</label>
+            <div id="queryDocResult" class="result muted">No result yet.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PDF Upload Section -->
+      <div class="row">
         <div class="col">
-          <label>Result</label>
-          <div id="result" class="result muted">No result yet.</div>
+          <label for="pdfFile">Upload PDF Document</label>
+          <input type="file" id="pdfFile" accept="application/pdf" />
+          <button id="uploadPdfBtn">Upload PDF</button>
+          <div id="uploadStatus" class="muted"></div>
+          <div id="uploadedDocId" class="muted"></div>
+        </div>
+      </div>
+
+      <!-- List Available Vector Stores -->
+      <div class="row">
+        <div class="col">
+          <label>Available Vector Stores</label>
+          <button id="loadVectorStoresBtn">Show Vector Stores</button>
         </div>
       </div>
 
@@ -60,29 +180,64 @@
     </div>
   </div>
 
-  <script>
-    // If your FastAPI runs under a different origin, change this:
-    const API_BASE = "http://127.0.0.1:8000"; 
-    const ENDPOINT = "/rag/query";
+  <!-- Vector Store List -->
+  <div id="vectorStoreList" class="vector-store-list" style="display: none;">
+    <button class="close-btn" id="closeVectorList">×</button>
+    <div class="vector-stores-header">Available Vector Stores</div>
+    <div id="vectorStoreContent" class="muted">Click "Show Vector Stores" to load the list.</div>
+  </div>
 
-    const $q = document.getElementById("query");
-    const $btn = document.getElementById("submitBtn");
-    const $status = document.getElementById("status");
-    const $result = document.getElementById("result");
+  <script>
+    // FastAPI server base URL
+    const API_BASE = "http://127.0.0.1:8000"; 
+    const UPLOAD_PDF_ENDPOINT = "/rag/upload-document-pdf";
+    const LIST_VECTOR_STORES_ENDPOINT = "/rag/list-vector-stores";
+    const QUERY_BY_DOCUMENT_ENDPOINT = "/rag/query-by-document";
+    const QUERY_ENDPOINT = "/rag/query";
+
+    // Elements
+    const $pdfFile = document.getElementById("pdfFile");
+    const $uploadPdfBtn = document.getElementById("uploadPdfBtn");
+    const $uploadStatus = document.getElementById("uploadStatus");
+    const $uploadedDocId = document.getElementById("uploadedDocId");
+
+    const $query = document.getElementById("query");
+    const $submitQueryBtn = document.getElementById("submitQueryBtn");
+    const $queryResult = document.getElementById("queryResult");
+    const $queryStatus = document.getElementById("queryStatus");
+
+    const $queryByDoc = document.getElementById("queryByDoc");
+    const $submitQueryDocBtn = document.getElementById("submitQueryDocBtn");
+    const $queryDocResult = document.getElementById("queryDocResult");
+    const $selectedDocId = document.getElementById("selectedDocId");
+
+    const $vectorStoreList = document.getElementById("vectorStoreList");
+    const $vectorStoreContent = document.getElementById("vectorStoreContent");
+    const $loadVectorStoresBtn = document.getElementById("loadVectorStoresBtn");
+    const $closeVectorList = document.getElementById("closeVectorList");
+
     const $history = document.getElementById("history");
+
+    let lastDocumentId = ""; // Keep track of the last uploaded document ID
 
     const history = [];
 
-    function setLoading(isLoading) {
+    // Set loading state
+    function setLoading(isLoading, button, statusElem, loadingText) {
       if (isLoading) {
-        $btn.setAttribute("disabled", "true");
-        $status.innerHTML = '<span class="spinner"></span>Processing your query...';
+        button.setAttribute("disabled", "true");
+        if (statusElem) {
+          statusElem.innerHTML = `<span class="spinner"></span> ${loadingText}`;
+        }
       } else {
-        $btn.removeAttribute("disabled");
-        $status.textContent = "";
+        button.removeAttribute("disabled");
+        if (statusElem) {
+          statusElem.textContent = "";
+        }
       }
     }
 
+    // Render history
     function renderHistory() {
       if (!history.length) {
         $history.classList.add("muted");
@@ -105,52 +260,249 @@
         .replace(/'/g, "&#039;");
     }
 
-    async function sendQuery() {
-      const query = $q.value.trim();
-      if (!query) {
-        $status.innerHTML = '<span class="error">Please enter a query.</span>';
+    // Upload PDF
+    async function uploadPDF() {
+      if (!$pdfFile.files[0]) {
+        $uploadStatus.innerHTML = '<span class="error">Please select a PDF file first.</span>';
         return;
       }
 
-      setLoading(true);
-      $result.classList.remove("muted");
-      $result.textContent = "";
+      const formData = new FormData();
+      formData.append("pdf_file", $pdfFile.files[0]);
 
+      setLoading(true, $uploadPdfBtn, $uploadStatus, "Uploading PDF...");
       try {
-        const resp = await fetch(API_BASE + ENDPOINT, {
+        const resp = await fetch(API_BASE + UPLOAD_PDF_ENDPOINT, {
+          method: "POST",
+          body: formData
+        });
+
+        if (!resp.ok) {
+          throw new Error(`HTTP error! status: ${resp.status}`);
+        }
+
+        const data = await resp.json();
+        lastDocumentId = data.document_id; // Save the last uploaded document ID
+        $uploadStatus.textContent = `PDF uploaded successfully. Document ID: ${data.document_id}`;
+        $uploadedDocId.textContent = `Last uploaded Document ID: ${data.document_id}`;
+        $selectedDocId.textContent = `Selected: ${data.document_id}`;
+        loadVectorStores(); // Reload vector stores
+      } catch (e) {
+        $uploadStatus.innerHTML = `<span class="error">Upload failed: ${escapeHtml(e.message || e)}</span>`;
+      } finally {
+        setLoading(false, $uploadPdfBtn, $uploadStatus, "");
+      }
+    }
+
+    // Query by Document ID
+    async function sendQueryByDoc() {
+      const query = $queryByDoc.value.trim();
+      if (!query) {
+        $queryDocResult.innerHTML = '<span class="error">Please enter a query.</span>';
+        return;
+      }
+      if (!lastDocumentId) {
+        $queryDocResult.innerHTML = '<span class="error">Please select a document first from the vector stores list.</span>';
+        return;
+      }
+
+      setLoading(true, $submitQueryDocBtn, null, "Processing your query...");
+      try {
+        const resp = await fetch(API_BASE + QUERY_BY_DOCUMENT_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ query, document_id: lastDocumentId })
+        });
+
+        if (!resp.ok) {
+          throw new Error(`HTTP error! status: ${resp.status}`);
+        }
+
+        const data = await resp.json();
+        const answer = data?.answer ?? "No answer found.";
+        $queryDocResult.textContent = answer;
+        history.push({ query, answer });
+        renderHistory();
+      } catch (e) {
+        $queryDocResult.innerHTML = `<span class="error">Request failed: ${escapeHtml(e.message || e)}</span>`;
+      } finally {
+        setLoading(false, $submitQueryDocBtn, null, "");
+      }
+    }
+
+    // Query by Text
+    async function sendQuery() {
+      const query = $query.value.trim();
+
+      if (!query) {
+        $queryStatus.innerHTML = '<span class="error">Please enter a query.</span>';
+        return;
+      }
+
+      setLoading(true, $submitQueryBtn, $queryStatus, "Processing your query...");
+      try {
+        const resp = await fetch(API_BASE + QUERY_ENDPOINT, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ query })
         });
 
         if (!resp.ok) {
-          const msg = `HTTP ${resp.status} – ${resp.statusText}`;
-          $result.innerHTML = `<span class="error">${msg}</span>`;
-          setLoading(false);
-          return;
+          throw new Error(`HTTP error! status: ${resp.status}`);
         }
 
         const data = await resp.json();
-        const answer = data?.answer ?? data?.result ?? JSON.stringify(data);
-
-        $result.textContent = answer;
+        const answer = data?.answer ?? "No answer found.";
+        $queryResult.textContent = answer;
         history.push({ query, answer });
         renderHistory();
       } catch (e) {
-        $result.innerHTML = `<span class="error">Request failed: ${escapeHtml(e.message || e)}</span>`;
+        $queryResult.innerHTML = `<span class="error">Request failed: ${escapeHtml(e.message || e)}</span>`;
       } finally {
-        setLoading(false);
+        setLoading(false, $submitQueryBtn, $queryStatus, "");
       }
     }
 
-    $btn.addEventListener("click", sendQuery);
-    $q.addEventListener("keydown", (e) => {
-      if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
+    // Load available vector stores
+    async function loadVectorStores() {
+      setLoading(true, $loadVectorStoresBtn, null, "Loading vector stores...");
+      $vectorStoreContent.innerHTML = '<span class="spinner"></span> Loading vector stores...';
+      $vectorStoreList.style.display = 'block';
+      
+      try {
+        const resp = await fetch(API_BASE + LIST_VECTOR_STORES_ENDPOINT);
+        
+        if (!resp.ok) {
+          throw new Error(`HTTP error! status: ${resp.status}`);
+        }
+        
+        const data = await resp.json();
+        console.log('API Response:', data); // Debug log
+
+        // Check if we have the expected structure
+        if (data.vectors && data.vectors.vector_stores && data.vectors.document_ids) {
+          const vectorStores = data.vectors.vector_stores;
+          const documentIds = data.vectors.document_ids;
+
+          if (vectorStores.length > 0) {
+            $vectorStoreContent.innerHTML = vectorStores.map((store, index) => 
+              `<div class="vector-store-item">
+                 <strong>Vector Store:</strong> ${escapeHtml(store)}<br>
+                 <strong>Document ID:</strong> ${escapeHtml(documentIds[index])}<br>
+                 <div style="margin-top: 8px;">
+                   <button class="queryBtn" data-doc-id="${escapeHtml(documentIds[index])}">Select for Query</button>
+                   <button class="viewPdfBtn" data-doc-id="${escapeHtml(documentIds[index])}">View PDF</button>
+                 </div>
+               </div>`
+            ).join('');
+            
+            // Add event listeners to query buttons
+            const queryBtns = document.querySelectorAll('.queryBtn');
+            queryBtns.forEach(btn => {
+              btn.addEventListener('click', function() {
+                const docId = this.getAttribute('data-doc-id');
+                lastDocumentId = docId; // Automatically select this doc ID for querying
+                $selectedDocId.textContent = `Selected: ${docId}`;
+                
+                // Switch to query by document tab
+                document.getElementById("queryByDocSection").style.display = "block";
+                document.getElementById("querySection").style.display = "none";
+                document.getElementById("navQueryDocBtn").classList.add("active");
+                document.getElementById("navQueryBtn").classList.remove("active");
+                
+                // Hide the vector store list
+                $vectorStoreList.style.display = 'none';
+              });
+            });
+
+            // Add event listeners to view PDF buttons
+            const viewPdfBtns = document.querySelectorAll('.viewPdfBtn');
+            viewPdfBtns.forEach(btn => {
+              btn.addEventListener('click', function() {
+                const docId = this.getAttribute('data-doc-id');
+                viewPDF(docId);
+              });
+            });
+          } else {
+            $vectorStoreContent.innerHTML = '<div class="muted">No vector stores found.</div>';
+          }
+        } else {
+          console.error('Unexpected API response structure:', data);
+          $vectorStoreContent.innerHTML = '<span class="error">Unexpected response format from server.</span>';
+        }
+      } catch (e) {
+        console.error('Error loading vector stores:', e);
+        $vectorStoreContent.innerHTML = `<span class="error">Error loading vector stores: ${escapeHtml(e.message)}</span>`;
+      } finally {
+        setLoading(false, $loadVectorStoresBtn, null, "");
+      }
+    }
+
+    // Close vector stores list
+    function closeVectorStores() {
+      $vectorStoreList.style.display = 'none';
+    }
+
+    // View PDF function - Using your dedicated FastAPI endpoint
+    function viewPDF(documentId) {
+      const pdfUrl = `${API_BASE}/rag/pdf/${documentId}`;
+      
+      // Try to open PDF in a new tab
+      const newWindow = window.open(pdfUrl, '_blank');
+      
+      // If popup is blocked, show alternative
+      if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
+        // Create a temporary link and click it
+        const link = document.createElement('a');
+        link.href = pdfUrl;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        // Show user message
+        alert(`PDF should open in a new tab. If blocked, you can access it at: ${pdfUrl}`);
+      }
+    }
+
+    // Event Listeners
+    $uploadPdfBtn.addEventListener("click", uploadPDF);
+    $submitQueryDocBtn.addEventListener("click", sendQueryByDoc);
+    $submitQueryBtn.addEventListener("click", sendQuery);
+    $loadVectorStoresBtn.addEventListener("click", loadVectorStores);
+    $closeVectorList.addEventListener("click", closeVectorStores);
+
+    // Toggle Navigation
+    document.getElementById("navQueryBtn").addEventListener("click", () => {
+      document.getElementById("querySection").style.display = "block";
+      document.getElementById("queryByDocSection").style.display = "none";
+      document.getElementById("navQueryBtn").classList.add("active");
+      document.getElementById("navQueryDocBtn").classList.remove("active");
+    });
+
+    document.getElementById("navQueryDocBtn").addEventListener("click", () => {
+      document.getElementById("queryByDocSection").style.display = "block";
+      document.getElementById("querySection").style.display = "none";
+      document.getElementById("navQueryDocBtn").classList.add("active");
+      document.getElementById("navQueryBtn").classList.remove("active");
+    });
+
+    // Allow Enter key to submit queries
+    $query.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter' && e.ctrlKey) {
         sendQuery();
       }
     });
 
-    renderHistory();
+    $queryByDoc.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter' && e.ctrlKey) {
+        sendQueryByDoc();
+      }
+    });
+
+    // Initial load
+    // Don't auto-load vector stores on page load to reduce API calls
   </script>
 </body>
 </html>

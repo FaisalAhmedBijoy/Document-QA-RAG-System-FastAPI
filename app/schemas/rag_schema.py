@@ -8,3 +8,8 @@ class QueryOnlySchema(BaseModel):
 class QueryWithReferenceSchema(BaseModel):
     query: str
     expected_answer: str | None = None
+
+# Query with Document ID
+class QueryWithDocumentIdSchema(BaseModel):
+    query: str
+    document_id: str

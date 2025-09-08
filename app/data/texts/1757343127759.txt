@@ -1,0 +1,126 @@
+JJaakkaarriiaa RRaabbbbii
+Jakaria Rabbi, Assistant Professor Cell: +880 1912818546
+Department of CSE E-mail: jakaria_rabbi@cse.kuet.ac.bd
+Khulna University of Engineering & Technology jakaria@ualberta.ca
+Bangladesh jakaria.rabbi@yahoo.com
+Homepage: http://www.kuet.ac.bd/cse/jakaria LinkedIn:
+Personal Website: http://www.jakariarabbi.com https://bd.linkedin.com/in/jakaria-rabbi
+GitHub: https://github.com/Jakaria08
+Research Interests Machine Learning, Computer Vision, Remote Sensing, Data Science and Data Mining.
+Education University of Alberta, Edmonton, Canada.
+M.Sc. in Computing Science, May 2020
+Khulna University of Engineering and Technology, Khulna, Bangladesh.
+B.Sc. in Computer Science and Engineering, September 2013
+M. Sc. Thesis “Tiny Object Detection in Remote Sensing Images: End-to-End Super-Resolution and
+Object Detection with Deep Learning”
+Supervisor: Professor Dr. Nilanjan Ray, CS, University of Alberta
+B.Sc. Thesis “Incremental Aggregation Scheme Based on Extendible Multidimensional Arrays”
+Supervisor: Professor Dr. K.M. Azharul Hasan, CSE, KUET
+Academic Projects ▪ Image super resolution and object detection using deep learning on satellite imagery
+(Python, PyTorch) (Project Related to Thesis)
+▪ Interactive Image Segmentation using convolutional neural network (Python,
+TensorFlow) (Masters Course Project)
+▪ Mental stress monitoring through individual’s smartphone sensor data (Java,
+Android) (Masters Course Project)
+▪ Crime Analysis using Data Mining Techniques (R) (Masters Course Project)
+▪ Design of a ray tracer (C++) (Masters Course Project)
+Technical Skills • Language & Framework: C, C++, JAVA, Python, R, PyTorch, TensorFlow
+• Database: Oracle, MySQL
+• Simulation Tools & IDE: Eclipse, MATLAB, Microsoft Visual Studio, Packet
+Tracer, PyCharm
+Professional ▪ CCNA Instructors Training: CISCO Networking Academy, AIUB
+Training & Course ▪ Training of Trainers (ToT): Training course on Information Technology Engineers
+Examination (ITEE), BD-ITEC, Dhaka
+▪ CCNA Exploration: CISCO Local Academy, KUET
+Honors & Awards • AWS Machine Learning Scholarship worth of 1000 USD by Amazon and Udacity
+• Maintained Dean’s List in three consecutive year in recognition of excellent
+performance (2010, 2011,2012) (KUET)
+• Technical Scholarship in consecutive four years for maintaining decent result
+(KUET)
+• Positioned third in a programming contest arranged by CSE Association (KUET)
+• Positioned sixth at Project Show (Inter-college) in Notre Dame Science Fair (2007)
+(Notre Dame College)
+Contest ▪ Coordinator of contest programming club which name is SGIPC, KUET
+Programming ▪ Coach of contest programming teams of KUET and regularly participate in
+International Collegiate Programming Contest (ICPC) and National Collegiate
+Programming Contest (NCPC)
+▪ Our team achieved 9th position in RUET NCPC 2015
+Completed Online ▪ Deep Learning Specialization (5 Courses) (Coursera)
+Courses ▪ Machine Learning -- Stanford University (Coursera)
+▪ The Data Scientist’s Toolbox -- Johns Hopkins University (Coursera)
+▪ R Programming -- Johns Hopkins University (Coursera)
+Courses in Masters ▪ Data Mining
+▪ Computer Graphics
+▪ Visual Recognition with Deep Learning
+▪ Internet of Things
+Major Courses in ▪ Structured Programming, Discrete Mathematics, Digital Logic Design, Object
+Undergraduate Oriented Programming, Data Structure & Algorithm, Algorithm Analysis & Design,
+Mathematical Analysis, Software Engineering, Database Systems, Operating Systems,
+Compiler Design, Computer Networks, Artificial Intelligence, Machine Learning,
+Computer Graphics, Computer & Network Security, Digital System Design
+Professional ▪ Assistant Professor, Department of Computer Science & Engineering
+Experiences Khulna University of Engineering and Technology (KUET)
+May 2017 – Present
+Courses: Computer Architecture, Data Structure & Algorithms, Internet
+Programming, Software Engineering, Operating Systems, Digital System Design and
+Computer Graphics
+▪ Cisco Instructor
+Khulna University of Engineering and Technology (KUET)
+April 2015 – Present
+Courses: CCNA Exploration: 4 Course
+▪ Master Trainer for ITEE
+Information Technology Engineers Examination (ITEE). This Examination is
+governed by Information-Technology Promotion Agency (IPA), Japan.
+March 2014-Present
+Responsibility: Train the perspective examinee and take the ITEE examination.
+▪ Teaching Assistant, Department of Computing Science
+University of Alberta
+September 2017 – April 2020
+Course: Introduction to Software Engineering
+▪ Summer Student Intern, Alberta Geological Survey, Alberta Energy Regulator
+May 2019 – August 2019
+Responsibility: Developed a software (based on Python, OpenCV library, and
+TensorFlow object detection API) to label large satellite imagery, train, and test
+different deep learning models, and generate geolocation files and trained models
+(shapefiles) to use in ArcGIS software. The software is being used by AER for oil and
+gas activity monitoring.
+▪ Lecturer, Department of Computer Science & Engineering
+Khulna University of Engineering and Technology (KUET)
+March 2014 – May 2017
+Courses: Computer Architecture, Data Structure & Algorithms, Internet
+Programming, Software Engineering, Operating Systems, Digital System Design and
+Computer Graphics
+▪ Software Engineer
+Samsung R&D Institute Bangladesh
+September 2013 – January 2014
+Responsibility: Software Engineer at Software Engineering and Platform
+Team. Had to work on Tizen Operating system’s core API for test case
+generation and application development with C++
+Professional ▪ Member of Institute of Engineers Bangladesh (IEB)
+Membership
+Publications ▪ Rabbi, Jakaria, et al. "Small-Object Detection in Remote Sensing Images with
+End-to-End Edge-Enhanced GAN and Object Detector Network." Remote Sensing
+12.9 (2020): 1432.
+▪ Awal, Md Abdul, Md Shamimur Rahman, and Jakaria Rabbi. "Detecting Abusive
+Comments in Discussion Threads Using Naïve Bayes." 2018 International
+Conference on Innovations in Science, Engineering and Technology (ICISET). IEEE,
+2018.
+▪ Md. Abdul Awal, Jakaria Rabbi, Sk. Imran Hossain, M.M.A. Hashem, “A Hybrid
+Approach to Plan Itinerary for Tourists”, 2016 5th International Conference on
+Informatics, Electronics & Vision (ICIEV), Dhaka, Bangladesh, May 13-14, 2016, pp.
+219-223. doi: 10.1109/ICIEV.2016.7759999
+▪ Md. Abdul Awal, Jakaria Rabbi, Sk. Imran Hossain, M.M.A. Hashem, “Using
+Linear Regression to Forecast Future Trends in Crime of Bangladesh”, 2016 5th
+International Conference on Informatics, Electronics & Vision (ICIEV), Dhaka,
+Bangladesh, May 13-14, 2016, pp. 333-338. doi: 10.1109/ICIEV.2016.7760021
+▪ K. M. Azharul Hasan, Jakaria Rabbi, S. M. Masudul Ahsan, "Incremental
+aggregation scheme based on Extendible Karnaugh Arrays," 17th International
+Conference on Computer and Information Technology (ICCIT), 2014, Dhaka, 2014,
+pp. 105-109. doi: 10.1109/ICCITechn.2014.7073125
+Reference Dr. Nilanjan Ray
+Professor
+2-21 Athabasca Hall
+Department of Computing Science
+University of Alberta
+Edmonton, Alberta T6G2E8,
+Canada

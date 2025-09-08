@@ -1,9 +1,9 @@
-
+import os
 import time
-from fastapi import APIRouter
+from fastapi.responses import FileResponse
 from fastapi import APIRouter, UploadFile, File, HTTPException
 
-from app.schemas.rag_schema import QueryOnlySchema, QueryWithReferenceSchema
+from app.schemas.rag_schema import QueryOnlySchema, QueryWithReferenceSchema, QueryWithDocumentIdSchema
 from app.services.rag_service import query_rag_with_reference, query_rag_without_reference, generate_vector_store_for_pdf, query_rag_by_document, get_all_vectors_list
 
 router = APIRouter()
@@ -36,8 +36,8 @@ async def upload_pdf(pdf_file: UploadFile = File(...)):
                                                saved_vector_store_path=saved_vector_store_path)
 
 @router.post("/query-by-document")
-async def query_by_document(request: QueryOnlySchema, document_id: str):
-    return await query_rag_by_document(request, document_id)
+async def query_by_document(request: QueryWithDocumentIdSchema):
+    return await query_rag_by_document(request)
         
 @router.get("/list-vector-stores")
 async def list_vector_stores():
@@ -46,4 +46,17 @@ async def list_vector_stores():
     Returns the document IDs extracted from the folder names.
     """
     return await get_all_vectors_list()
+
+@router.get("/pdf/{document_id}")
+async def get_pdf(document_id: str):
+    pdf_path = f"app/data/pdfs/{document_id}.pdf"
+    
+    if not os.path.exists(pdf_path):
+        raise HTTPException(status_code=404, detail="PDF not found")
+    
+    return FileResponse(
+        path=pdf_path,
+        media_type='application/pdf',
+        filename=f"{document_id}.pdf"
+    )
    
