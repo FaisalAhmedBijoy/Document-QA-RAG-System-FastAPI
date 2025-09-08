@@ -86,8 +86,8 @@ GROQ_API_KEY="YOUR_API_KEY"
    ```
 
 3. Access the applications:
-- FastAPI Swagger UI: http://localhost:8000/docs
-- Streamlit Interface: http://localhost:8501
+   - FastAPI Swagger UI: http://localhost:8000/docs
+   - Streamlit Interface: http://localhost:8501
 
 4. Run using Dokcer:
    ```bash
