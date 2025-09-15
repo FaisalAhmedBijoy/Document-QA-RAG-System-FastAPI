@@ -19,7 +19,6 @@ A powerful Document Question-Answering system built using `Retrieval-Augmented G
 - 🖥️ Interactive Streamlit Frontend
 - 📊 RAG System Evaluation Tools
 - 🔤 Multi-language Support (Bengali & English)
-- 📝 Detailed Logging System
 
 ## Project Structure
 ```
