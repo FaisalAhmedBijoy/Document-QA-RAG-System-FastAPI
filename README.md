@@ -2,6 +2,8 @@
 
 A powerful Document Question-Answering system built using `Retrieval-Augmented Generation (RAG)` architecture, `FAISS Vector Search`, and a `FastAPI` backend. It supports both Bengali and English for querying documents and provides context-aware answers. The system is also integrated with `Streamlit` for an interactive, user-friendly interface.
 
+#### Project Demonostration in Youtube
+[Document Question Answering using RAG  LLM | FAISS | FastAPI](https://youtu.be/xUirLSIpWM4)
 #### Web Application
 ![Webpage Home](/docs/webpage_homepage_main.png)
 ![Webpage Home](/docs/webpage_home_page_2.png)
